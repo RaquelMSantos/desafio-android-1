@@ -1,5 +1,8 @@
 package com.picpay.desafio.android
 
+import com.picpay.desafio.android.network.service.PicPayService
+import com.picpay.desafio.android.network.response.User
+
 class ExampleService(
     private val service: PicPayService
 ) {
