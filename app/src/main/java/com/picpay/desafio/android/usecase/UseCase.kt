@@ -1,7 +1,7 @@
-package com.picpay.desafio.android.repository
+package com.picpay.desafio.android.usecase
 
 import com.picpay.desafio.android.model.User
 
-interface PicPayRepository {
+interface UseCase {
     suspend fun getUsers(): List<User>
 }
