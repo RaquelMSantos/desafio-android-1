@@ -1,5 +1,7 @@
 package com.picpay.desafio.android.repository
 
+import com.picpay.desafio.android.network.response.User
+
 class LiveDataResult<T> (val status: STATUS, val data: T? = null, val error: Throwable? = null) {
     enum class STATUS {
         SUCCESS, LOADING, ERROR

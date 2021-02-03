@@ -12,23 +12,30 @@ class HomeViewModel (
     private val useCase: UseCase
 ): ViewModel() {
 
-    private val userList = ArrayList<User>()
-    val homeLiveData = MutableLiveData<LiveDataResult<MutableList<User>>>()
+    private val _users = MutableLiveData<LiveDataResult<MutableList<User>>>()
+    val user: MutableLiveData<LiveDataResult<MutableList<User>>>
+        get() = _users
 
-    fun getUsers() {
+    private lateinit var userList: ArrayList<User>
+
+    init {
+        getUsers()
+    }
+
+    private fun getUsers() {
         viewModelScope.launch {
 
-            homeLiveData.value = LiveDataResult.loading()
-            userList.clear()
+            _users.value = LiveDataResult.loading()
 
             try {
+
                 val result = useCase.getUsers()
                 userList.addAll(result)
 
-                homeLiveData.value = LiveDataResult.success(userList)
+                _users.value = LiveDataResult.success(userList)
 
             }catch (e: Exception) {
-                homeLiveData.value = LiveDataResult.error(e)
+                _users.value = LiveDataResult.error(e)
             }
         }
     }

@@ -46,8 +46,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObserve() {
-//        homeViewModel.getUsers()
-        homeViewModel.homeLiveData.observe(viewLifecycleOwner, Observer<LiveDataResult<MutableList<User>>>{
+        homeViewModel.user.observe(viewLifecycleOwner, Observer<LiveDataResult<MutableList<User>>>{
             when (it?.status) {
                 LiveDataResult.STATUS.ERROR -> {
                     requestError()
